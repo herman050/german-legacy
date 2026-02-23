@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>German Legacy – Mods Gratis</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6B00;
+    --yellow: #FFD200;
+    --dark: #0A0C0F;
+    --dark2: #111418;
+    --dark3: #1a1f26;
+    --gray: #8a9ab0;
+    --light: #e8edf5;
+    --whatsapp: #25D366;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,12,15,0.15) 0%, rgba(10,12,15,0.7) 60%, var(--dark) 100%),
+      url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: slowZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1.12); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,107,0,0.08) 0%, transparent 50%, rgba(255,210,0,0.05) 100%);
+  }
+
+  /* diagonal accent line */
+  .hero-line {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+  .hero-line::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -5%;
+    width: 2px;
+    height: 140%;
+    background: linear-gradient(180deg, transparent, var(--orange), transparent);
+    transform: rotate(-20deg);
+    opacity: 0.3;
+  }
+  .hero-line::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: 15%;
+    width: 1px;
+    height: 140%;
+    background: linear-gradient(180deg, transparent, var(--yellow), transparent);
+    transform: rotate(-20deg);
+    opacity: 0.2;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: #000;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    margin-bottom: 1.5rem;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 14vw, 12rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-title span.accent {
+    color: var(--orange);
+    text-shadow: 0 0 60px rgba(255,107,0,0.5);
+  }
+  .hero-title span.accent2 {
+    color: var(--yellow);
+    text-shadow: 0 0 60px rgba(255,210,0,0.4);
+  }
+
+  .hero-slogan {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-weight: 600;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-slogan strong {
+    color: var(--yellow);
+    font-weight: 700;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    margin-top: 2.5rem;
+    background: var(--orange);
+    color: #000;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+    transition: background 0.2s, transform 0.2s;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .hero-cta:hover {
+    background: var(--yellow);
+    transform: translateY(-2px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── BANNER ── */
+  .banner {
+    position: relative;
+    background: linear-gradient(135deg, #0d1117 0%, #1a1f26 50%, #0d1117 100%);
+    border-top: 1px solid rgba(255,107,0,0.3);
+    border-bottom: 1px solid rgba(255,107,0,0.3);
+    overflow: hidden;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,107,0,0.04), transparent);
+    animation: sheen 4s infinite;
+  }
+
+  @keyframes sheen {
+    from { transform: translateX(-33%); }
+    to   { transform: translateX(33%); }
+  }
+
+  .banner-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .banner-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.75rem;
+  }
+
+  .banner-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    color: var(--light);
+  }
+
+  .banner-title span { color: var(--orange); }
+
+  .banner-sub {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gray);
+    margin-top: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .banner-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--orange);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* ── MODS SECTION ── */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--orange), transparent);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: 0.1em;
+    color: var(--light);
+    white-space: nowrap;
+  }
+
+  .section-title span { color: var(--orange); }
+
+  /* MOD CARDS */
+ .mods-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .mod-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,107,0,0.15);
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  @media (max-width: 900px) {
+    .mods-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .mods-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .mod-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-4px);
+  }
+
+  .mod-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85);
+    transition: filter 0.3s;
+  }
+
+  .mod-card:hover .mod-card-img {
+    filter: brightness(1);
+  }
+
+  .mod-card-img-placeholder {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #1a2030, #252d3d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+
+  .mod-card-body {
+    padding: 1.25rem;
+  }
+
+  .mod-type {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid rgba(255,107,0,0.4);
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .mod-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--light);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .mod-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .mod-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .mod-meta span::before {
+    color: var(--yellow);
+    margin-right: 0.3rem;
+  }
+
+  .btn-download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: var(--orange);
+    color: #000;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.8rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
+  }
+
+  .btn-download:hover {
+    background: var(--yellow);
+  }
+
+  .btn-download svg {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 100%);
+    border-top: 1px solid rgba(255,107,0,0.2);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .contact-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-title span { color: var(--whatsapp); }
+
+  .contact-text {
+    color: var(--gray);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--whatsapp);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.5rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+  }
+
+  .btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(37,211,102,0.3);
+  }
+
+  .btn-whatsapp svg { width: 22px; height: 22px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060709;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: rgba(138,154,176,0.5);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  footer span { color: var(--orange); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-badge">American Truck Simulator</div>
+    <h1 class="hero-title">
+      German<span class="accent">Legacy</span><br>
+      <span class="accent2">ModsFree ATS</span>
+    </h1>
+    <p class="hero-slogan">
+      Los mejores mods, <strong>100% gratis</strong> — Maneja sin límites
+    </p>
+    <a href="#mods" class="hero-cta">Ver Mods Disponibles ↓</a>
+  </div>
+</section>
+
+<!-- ═══════════ BANNER ═══════════ -->
+<div class="banner">
+  <div class="banner-inner">
+    <p class="banner-tag">// Comunidad Gamer Latina //</p>
+    <h2 class="banner-title">Lleva tu <span>experiencia</span> al siguiente nivel</h2>
+    <p class="banner-sub">Mapas, camiones, trailers, sonidos, gráficos y más — descarga directa, sin registro</p>
+    <div class="banner-stats">
+      <div class="stat">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Mods Disponibles</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Gratis</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">Soporte</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MODS GRID ═══════════ -->
+<section id="mods" class="section">
+  <div class="section-header">
+    <h2 class="section-title">Mods <span>Destacados</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="mods-grid">
+
+    <!-- CARD 1 -->
+    <div class="mod-card">
+      <img class="mod-card-img" src="IMG/images.jfif.jpg" alt="AGA POLARIS">
+      <!-- Reemplaza con: <img class="mod-card-img" src="tu-imagen.jpg" alt="Nombre del mod"> -->
+      <div class="mod-card-body">
+        <span class="mod-type">bus</span>
+        <h3 class="mod-name">Mod Aga Polaris</h3>
+        <p class="mod-desc">Es un vehículo clásico diseñado para simular rutas andinas, destacando por su interior detallado, iluminación personalizada (licuadoras), sonido realista y skins de empresas colombianas. </p>
+        <div class="mod-meta">
+          <span>📦 scs</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 4.9</span>
+        </div>
+        <a href="https://www.mediafire.com/file/yffj79iomf05daz/Aga+Polaris+2012.scs/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="mod-card">
+       <img class="mod-card-img" src="IMG/maxresdefault1.jpg" alt="HINO 500">
+      <div class="mod-card-body">
+        <span class="mod-type">Camión</span>
+        <h3 class="mod-name">HINO 500 esteban truck</h3>
+        <p class="mod-desc">l mod del Hino 500 para American Truck Simulator (ATS), frecuentemente asociado a modificaciones de la comunidad (como las de "Esteban"), es un camión de carga mediano a pesado popular en Latinoamérica por su versatilidad. Presenta un diseño cabover, configuraciones de chasis adaptables, opción de espejos detallados, y luces funcionales, siendo ideal para mapas exigentes y rutas de carga.</p>
+        <div class="mod-meta">
+          <span>📦 scs</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 4.8</span>
+        </div>
+        <a href="https://www.mediafire.com/file/bux8t4g7yufe2on/HINO_500_ESTEBAN_TRUCK.scs/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="mod-card">
+      <img class="mod-card-img" src="IMG/g6_1200.jpg" alt="Marcopolo Paradiso 1200 G6">
+      <div class="mod-card-body">
+        <span class="mod-type">Bus</span>
+        <h3 class="mod-name"> Marcopolo Paradiso 1200 G6 </h3>
+        <p class="mod-desc">El Marcopolo Paradiso 1200 G6 es un autobús de carretera de la generación 6 (producida aprox. 2001-2011) reconocido por su diseño aerodinámico y funcionalidad. En el contexto de American Truck Simulator (ATS), este mod es muy popular, ofreciendo un vehículo de lujo con opciones personalizables, incluyendo asientos tipo semi-cama, baño, aire acondicionado Spheros, diversas configuraciones de chasis (Scania, Volvo, Mercedes-Benz) y una amplia variedad de skins.</p>
+        <div class="mod-meta">
+          <span>📦 Rar</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 5.0</span>
+        </div>
+        <a href="https://www.mediafire.com/file/o4febc2ck46jtgi/G61200Prueba.rar/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="mod-card">
+      <img class="mod-card-img" src="IMG/forever.jpg" alt="El AGA Forever">
+      <div class="mod-card-body">
+        <span class="mod-type">Bus</span>
+        <h3 class="mod-name">El AGA Forever</h3>
+        <p class="mod-desc">El AGA Forever es un autobús de gama alta diseñado y fabricado en Duitama, Boyacá (Colombia), que destaca por su diseño moderno, tecnología avanzada (opción de espejos digitales) y alta eficiencia, siendo ideal para transporte intermunicipal y turismo. Construido sobre chasis Scania o Volvo (Euro 6), combina comodidad, seguridad y ligereza para un mejor consumo de combustible.</p>
+        <div class="mod-meta">
+          <span>📦 RAR</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 4.7</span>
+        </div>
+        <a href="https://www.mediafire.com/file/r8mj3muo36h20b4/aga+forever.rar/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="mod-card">
+       <img class="mod-card-img" src="IMG/G7FC.jpg" alt="Marcopolo Paradiso G7 1200 4x2 ">
+      <div class="mod-card-body">
+        <span class="mod-type">Bus</span>
+        <h3 class="mod-name">Marcopolo Paradiso G7 1200 4x2 </h3>
+        <p class="mod-desc">El Marcopolo Paradiso G7 1200 4x2 es un destacado mod de autobús para American Truck Simulator (ATS) que recrea un vehículo de turismo de gama alta. Diseñado para ofrecer una experiencia realista, cuenta con configuración de chasis 4x2, interior detallado con pasajeros, y animaciones funcionales de puertas, común en rutas de turismo.</p>
+        <div class="mod-meta">
+          <span>📦 scs</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 4.8</span>
+        </div>
+        <a href="https://www.mediafire.com/file/piaf7rh2me1hqy2/G7_1200_4x2_SKINSCOLOMBIA_ATS.scs/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="mod-card">
+      <img class="mod-card-img" src="IMG/hq720.jpg" alt="GMC Carepanela">
+      <div class="mod-card-body">
+        <span class="mod-type">Camion</span>
+        <h3 class="mod-name">GMC Carepanela</h3>
+        <p class="mod-desc">GMC "Carepanela" es un emblemático camión dobletroque colombiano, recreado para American Truck Simulator (ATS) y popularizado por Track Molano. Este mod simula un camión clásico de la década de los 80, diseñado para carga pesada (12-15 toneladas), equipado con motor Caterpillar de 370 hp, caja de 10 velocidades y chasis corto, ideal para rutas exigentes o trochas.</p>
+        <div class="mod-meta">
+          <span>📦 SCS</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 4.9</span>
+        </div>
+        <a href="https://www.mediafire.com/file/zfnzgzn5108b3lo/GMC_CARE_PANELA_DANNER_TRUKERS.scs/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+   <!-- CARD 7 -->
+    <div class="mod-card">
+      <img class="mod-card-img" src="IMG/marcopolog8.jpg" alt="Marcopolo Paradiso 1200 G8 skin colombia">
+      <div class="mod-card-body">
+        <span class="mod-type">Bus</span>
+        <h3 class="mod-name">Marcopolo Paradiso 1200 G8 skin colombia</h3>
+        <p class="mod-desc">El Marcopolo Paradiso 1200 G8 (Generación 8) es un autobús de larga distancia destacado por su diseño aerodinámico, seguridad mejorada y alta tecnología, disponible como mod para ATS (American Truck Simulator) y otros mapas de LATAM. Incorpora iluminación full LED, cabina ergonómica y opciones de chasis como Scania o Volkswagen Euro 6.</p>
+        <div class="mod-meta">
+          <span>📦 SCS</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 4.9</span>
+        </div>
+        <a href="https://www.mediafire.com/file/ehpyhqddg7oyfim/Marcopolo_G8_1200_DESBLOQUEADO_JH3D.scs/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+   <!-- CARD 8 -->
+    <div class="mod-card">
+      <img class="mod-card-img" src="IMG/pegaso.jpg" alt="Pegaso 4 Manos">
+      <div class="mod-card-body">
+        <span class="mod-type">Camion</span>
+        <h3 class="mod-name">Pegaso "4 Manos"</h3>
+        <p class="mod-desc">El Pegaso "4 Manos" en American Truck Simulator (ATS) es un mod de camión clásico español, muy popular en mapas de Colombia, reconocido por su diseño chato, 370-550 HP y caja de 16 velocidades. Se destaca por tener dos ejes direccionales delanteros (doble troque), permitiendo maniobras superiores, gran capacidad de carga (hasta 24 toneladas en simulación) y una cabina detallada con toques nostálgicos.</p>
+        <div class="mod-meta">
+          <span>📦 SCS</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 4.9</span>
+        </div>
+        <a href="https://www.mediafire.com/file/cdw2qe17u84znif/Pegaso+4+Manos.scs/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+  <!-- CARD 9 -->
+    <div class="mod-card">
+      <img class="mod-card-img" src="/IMG/cargastorton.jpg" alt="Simulacion de cargas">
+      <div class="mod-card-body">
+        <span class="mod-type">Simulacion de cargas</span>
+        <h3 class="mod-name">Simulacion cargos torton</h3>
+        <p class="mod-desc">La simulación de cargos para camiones Torton en American Truck Simulator (ATS) se logra mediante mods que habilitan remolques específicos y misiones de carga para vehículos de tres ejes, permitiendo transportar productos voluminosos o materiales de construcción</p>
+        <div class="mod-meta">
+          <span>📦 SCS</span>
+          <span>🕹 ATS 1.57+1.58</span>
+          <span>⭐ 4.9</span>
+        </div>
+        <a href="https://www.mediafire.com/file/ty63oaqet9u67cm/Simulacion+de+Cargos+para+Torton.scs/file" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<div class="contact-section">
+  <div class="contact-inner">
+    <p class="contact-tag">// Atención Directa //</p>
+    <h2 class="contact-title">Contáctame por <span>WhatsApp</span></h2>
+    <p class="contact-text">
+      ¿Tienes dudas sobre algún mod? ¿Necesitas ayuda con la instalación?
+      ¿Quieres solicitar un mod específico? Escríbeme directamente.
+    </p>
+    <a href="https://wa.me/573142257245?text=Hola!%20Tengo%20una%20pregunta%20sobre%20los%20mods%20de%20ATS" 
+       target="_blank" class="btn-whatsapp">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  © 2026 <span>ModsFree ATS</span> — Mods 100% Gratis para la comunidad latina · Hecho con ❤️ para truckers
+</footer>
+
+</body>
+</html>
