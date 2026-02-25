@@ -928,5 +928,97 @@
   © 2026 <span>ModsFree ATS</span> — Mods 100% Gratis para la comunidad latina · Hecho con ❤️ para truckers
 </footer>
 
+<canvas id="stars"></canvas>
+<style>
+  #stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+</style>
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Estrellas estáticas
+  const stars = Array.from({length: 150}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5,
+    alpha: Math.random(),
+    speed: Math.random() * 0.01
+  }));
+
+  // Meteoritos
+  const meteors = [];
+  function createMeteor() {
+    meteors.push({
+      x: Math.random() * canvas.width,
+      y: 0,
+      length: Math.random() * 150 + 50,
+      speed: Math.random() * 8 + 4,
+      alpha: 1
+    });
+  }
+  setInterval(createMeteor, 1500);
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar estrellas
+    stars.forEach(s => {
+      s.alpha += s.speed;
+      if (s.alpha > 1 || s.alpha < 0) s.speed *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+      ctx.fill();
+    });
+
+    // Dibujar meteoritos
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      const m = meteors[i];
+      const grad = ctx.createLinearGradient(m.x, m.y, m.x + m.length, m.y + m.length);
+      grad.addColorStop(0, `rgba(255, 255, 255, 0)`);
+      grad.addColorStop(1, `rgba(255, 255, 255, ${m.alpha})`);
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(m.x + m.length, m.y + m.length);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      m.x += m.speed;
+      m.y += m.speed;
+      m.alpha -= 0.02;
+      if (m.alpha <= 0) meteors.splice(i, 1);
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+<audio id="musica" loop>
+  <source src="musica/music.mp3" type="audio/mpeg">
+</audio>
+<script>
+  const audio = document.getElementById('musica');
+  audio.volume = 0.3;
+  document.addEventListener('click', () => {
+    audio.play();
+  }, {once: true});
+</script>
+
 </body>
 </html>
